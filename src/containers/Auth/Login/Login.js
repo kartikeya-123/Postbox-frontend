@@ -45,7 +45,8 @@ class Auth extends Component {
     isLoading: false,
     isLoggedin: false,
     show: false,
-    errorMessage: '',
+    errorMessage: ``,
+    emailVerified: true,
   };
   static contextType = UserContext;
   ///
@@ -96,9 +97,17 @@ class Auth extends Component {
         .then((response) => {
           console.log(response.data);
           console.log(document.cookie);
-          this.setState({ isLoggedin: true, isLoading: false, show: true });
+          if (!response.data.verification) {
+            this.setState({
+              errorMessage: 'You have not verified your email id ',
+              isLoading: false,
+              emailVerified: false,
+            });
+          } else
+            this.setState({ isLoggedin: true, isLoading: false, show: true });
         })
         .catch((error) => {
+          console.log(error.data);
           this.setState({
             errorMessage: 'invalid email or password',
             isLoading: false,
@@ -158,6 +167,11 @@ class Auth extends Component {
           <h2 style={{ color: 'green' }}>Login</h2>
           <p style={{ color: 'red' }}>
             {this.state.errorMessage ? '*' + this.state.errorMessage : null}
+            {!this.state.emailVerified ? (
+              <span className={classes.link}>
+                <Link to="/verifyEmail">verify email</Link>
+              </span>
+            ) : null}
           </p>
           {formElementsArray.map((formElement) => (
             <Input
@@ -174,7 +188,7 @@ class Auth extends Component {
           ))}
           <span className={classes.Forgot}>
             <p className={classes.link}>
-              <Link to="/forgotPassword">Forgot Password</Link>
+              <Link to="/forgotPassword">Forgot Password?</Link>
             </p>
           </span>
           <div className={classes.Button}>

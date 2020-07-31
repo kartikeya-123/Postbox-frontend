@@ -33,8 +33,11 @@
     width: 540px;
   }
 }
-@media (max-width: 600px) {
+@media (max-width: 500px) {
   .Header {
     width: 60%;
+  }
+  .Posts {
+    width: 95%;
   }
 }

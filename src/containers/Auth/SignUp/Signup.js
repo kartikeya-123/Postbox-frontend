@@ -205,6 +205,9 @@ class Signup extends Component {
             <p className={classes.link}>
               <Link to="/login">Already a member? Sign in</Link>
             </p>
+            <p className={classes.link}>
+              <Link to="/verifyEmail">Already have a signup token ?</Link>
+            </p>
           </span>
         </div>
       </div>
@@ -214,7 +217,9 @@ class Signup extends Component {
         <h1>Postbox</h1>
         <h3>Welcome to postbox</h3>
         <p>We have sent a confirmation email to your email id</p>
-        <Link to="/verifyEmail">Verify Email</Link>
+        <p className={classes.link}>
+          <Link to="/verifyEmail">Verify Email</Link>
+        </p>
       </div>
     );
     return (

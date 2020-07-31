@@ -28,6 +28,8 @@
   .Post {
     width: 100%;
     min-height: 230px;
+    margin: 5px;
+
     /* height: 310px; */
   }
   .Properties {
